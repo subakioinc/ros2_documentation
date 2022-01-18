@@ -1,51 +1,71 @@
 .. _ConfigROS2:
 
+ROS 2 환경 설정
 Configuring your ROS 2 environment
 ==================================
 
+**목표:** 이 튜토리얼은 ROS 2 환경을 준비하는 방법을 보여준다.
 **Goal:** This tutorial will show you how to prepare your ROS 2 environment.
 
+**레벨:** 초급자
 **Tutorial level:** Beginner
 
+**소요시간:** 5분
 **Time:** 5 minutes
 
 .. contents:: Contents
    :depth: 2
    :local:
 
-Background
+배경(Background)
 ----------
 
+ROS 2는 shell 환경을 사용해서 workspaces를 결합하는 개념.
+"workspaces"는 ROS 2로 개발하는 시스템에 해당 위치를 가리키는 ROS 용어.
+core ROS 2 workspace를 underlay라고 부른다.
+이하 로컬 workspaces를 overlays라고 부른다.
+ROS 2로 개발할때, 일반적으로 동시에 여러 workspace들이 활성화된다.
 ROS 2 relies on the notion of combining workspaces using the shell environment.
 "Workspace" is a ROS term for the location on your system where you're developing with ROS 2.
 The core ROS 2 workspace is called the underlay.
 Subsequent local workspaces are called overlays.
 When developing with ROS 2, you will typically have several workspaces active concurrently.
 
+workspace들을 결합하면 ROS 2의 다른 버전에 대응 혹은 다른 패키지들의 집합을 좀더 쉽게 개발.
+동일한 컴퓨터에 여러 ROS 2 배포 버전을 설치하여 버전 사이에 스위칭이 가능.
 Combining workspaces makes developing against different versions of ROS 2, or against different sets of packages, easier.
 It also allows the installation of several ROS 2 distributions (or “distros”, e.g. Dashing and Eloquent) on the same computer and switching between them.
 
+매번 새로운 shell을 열때 setup 파일을 source 명령을 통하거나 shell startup 스크립트에서 한 번만 source 명령을 추가해 줄 수도 있다.
+setup 파일을 source 명령을 사용하지 않으면 ROS 2 명령에 접근할 수 없고 ROS 2 패키지를 찾거나 사용할 수 없다.
+다시 말하자면 ROS 2를 사용할 수 없다. 
 This is accomplished by sourcing setup files every time you open a new shell, or by adding the source command to your shell startup script once.
 Without sourcing the setup files, you won’t be able to access ROS 2 commands, or find or use ROS 2 packages.
 In other words, you won’t be able to use ROS 2.
 
-Prerequisites
+사전준비(Prerequisites)
 -------------
 
+이 튜토리얼을 시작하기 전에 ROS 2를 설치.
 Before starting these tutorials, install ROS 2 by following the instructions on the ROS 2 :doc:`../Installation` page.
 
+이 튜토리얼에 사용한 명령은 리눅스 바이너리 패키지 설치가 되어 있다고 가정하고 사용.
+만약 소스 빌드로 설치한 경우라면 setup 파일의 위치가 약간 다를 수 있음.
+소스 빌드로 설치한 경우 ``sudo apt install ros-<distro>-<package>`` 명령을 사용할 수 없음.
 The commands used in this tutorial assume you followed the binary packages installation guide for your operating system (Debian packages for Linux).
 You can still follow along if you built from source, but the path to your setup files will likely be different.
 You also won't be able to use the ``sudo apt install ros-<distro>-<package>`` command (used frequently in the beginner level tutorials) if you install from source.
 
+리눅스를 사용하는데 shell 환경에 익숙하지 않다면 아래 튜토리얼을 참고하자.
 If you are using Linux or macOS, but are not already familiar with the shell, `this tutorial <http://www.ee.surrey.ac.uk/Teaching/Unix/>`__ will help.
 
 Tasks
 -----
 
-1 Source the setup files
+1 setup 파일을 source하기 (Source the setup files)
 ^^^^^^^^^^^^^^^^^^^^^^^^
 
+매번 새로운 shell을 열때마다 다음 명령을 수행하여 ROS 2명령에 접근할 수 있다. 다음과 같이:
 You will need to run this command on every new shell you open to have access to the ROS 2 commands, like so:
 
 .. tabs::
